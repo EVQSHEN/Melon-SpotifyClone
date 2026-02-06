@@ -1,16 +1,19 @@
 import SpotifyWebApi from 'spotify-web-api-js';
+
 export * from './webplayback';
 export const spotifyApi = new SpotifyWebApi();
 
-export async function setToken(): Promise<boolean> {
+export async function setToken(existingToken: string): Promise<boolean> {
   const token = localStorage.getItem('access_token');
   if (!token) return false;
   spotifyApi.setAccessToken(token);
   try {
-    await getMe();
+    await spotifyApi.getMe();
     return true;
   } catch {
+    console.error('Токен недійсний або прострочений:');
     localStorage.removeItem('access_token');
+    localStorage.removeItem('refresh_token');
     return false;
   }
 }
