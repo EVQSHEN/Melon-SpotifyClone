@@ -1,34 +1,26 @@
 import SpotifyWebApi from 'spotify-web-api-js';
-import { LINK } from './constants';
 export * from './webplayback';
-
 export const spotifyApi = new SpotifyWebApi();
 
-export async function setToken() {
-  const hash: string = window.location.hash;
-  if (hash) {
-    const token = hash
-      .substring(1)
-      .split('&')
-      .find((elem) => elem.startsWith('access_token'))
-      ?.split('=')[1];
-    window.location.hash = '';
-    token && window.localStorage.setItem('token', token);
+export async function setToken(): Promise<boolean> {
+  const token = localStorage.getItem('access_token');
+  if (!token) return false;
+  spotifyApi.setAccessToken(token);
+  try {
+    await getMe();
+    return true;
+  } catch {
+    localStorage.removeItem('access_token');
+    return false;
   }
-  const token: string | undefined | null = window.localStorage.getItem('token');
-  token && spotifyApi.setAccessToken(token);
-  const data = await getMe();
-  return !!data;
 }
 
 export async function getMe() {
   try {
-    const user = await spotifyApi.getMe();
-    return user;
+    return await spotifyApi.getMe();
   } catch (err) {
-    console.log('Something went wrong!', err);
-    window.localStorage.removeItem('token');
-    window.location.replace(LINK);
+    console.log('Spotify API error', err);
+    throw err;
   }
 }
 

@@ -24,7 +24,6 @@ const AlbumCard: React.FC<any> = ({ name, artists, images, id }) => {
           <IconSVG name="playPulse" height="50" width="50" className="animate-pulse fill-sky-400" />
         </div>
       </div>
-
       <h2 className="mb-1 w-full truncate text-ellipsis">{name}</h2>
       <p className="mb-3 text-xs truncate text-neutral-400 text-ellipsis">
         {artists &&

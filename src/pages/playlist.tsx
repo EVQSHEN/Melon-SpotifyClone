@@ -4,10 +4,10 @@ import { getPlaylistTracks, getPlaylist, getMySavedTracks } from '@/api/spotify'
 import { pickColors } from '@/utils/getColor';
 import { colorType } from '@/types/interface';
 import TrackRow from '@/components/TrackRow/TrackRow';
-import SkeletonTrackRow from '@/components/Skeleton/SkeletonTrackRow';
-import HeaderTrackRow from '@/components/HeaderTrackRow/HeaderTrackRow';
 import TypedHeader from '@/components/TypedHeader/TypedHeader';
 import ControlPanel from '@/components/ControlPanel/ControlPanel';
+import SkeletonTrackRow from '@/components/Skeleton/SkeletonTrackRow';
+import HeaderTrackRow from '@/components/HeaderTrackRow/HeaderTrackRow';
 
 const Playlist = () => {
   const { id } = useParams();
@@ -67,7 +67,7 @@ const Playlist = () => {
 
   React.useEffect(() => {
     if (id === 'liked_songs') {
-      pickColors('/src/assets/liked_songs.png', setColors);
+      pickColors('/liked_songs.png', setColors);
     } else pickColors(playlistData?.images[0]?.url, setColors);
   }, [playlistData]);
 

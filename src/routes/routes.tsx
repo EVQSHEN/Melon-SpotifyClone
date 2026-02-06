@@ -12,6 +12,7 @@ import NotFound from '@/pages/notFound';
 import MusicHub from '@/pages/musicHub';
 import SearchType from '@/pages/searchType';
 import { setToken } from '@/api/spotify';
+import CallbackHandler from '@/pages/CallbackHandler';
 
 const useRoutes = () => {
   const [tokenSubmit, setTokenSubmit] = React.useState<Promise<boolean>>();
@@ -44,6 +45,7 @@ const useRoutes = () => {
           <Route path="search/:value/:category" Component={SearchType} />
         </Route>
       )}
+      <Route path="/callback" element={<CallbackHandler />} />
       <Route path="/login" Component={Login} />
       <Route path="*" Component={NotFound} />
     </Routes>

@@ -32,7 +32,6 @@ const Artist = () => {
       setArtistAlbums(response);
     }
   }
-  console.log(topTracks);
   React.useEffect(() => {
     fetchArtistData();
   }, [id]);

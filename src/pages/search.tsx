@@ -83,6 +83,7 @@ const SearchPage = () => {
       <div className="xl:grid-cols-7 lg:grid-cols-6 md:grid-cols-5 md:grid flex overflow-auto gap-2 mb-10">
         {(searchResults?.playlists &&
           searchResults.playlists.items
+            .filter((item: any) => item !== null)
             .slice(0, gridRowLength)
             .map((el: any) => <PlaylistCard key={el.id} {...el} />)) ||
           [...new Array(gridRowLength)].map((_, id) => <SkeletonCard key={100 + id} />)}

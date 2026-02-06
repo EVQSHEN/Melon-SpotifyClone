@@ -27,7 +27,7 @@ const Header = () => {
   };
 
   const logout = () => {
-    window.localStorage.getItem('token') && window.localStorage.removeItem('token');
+    window.localStorage.getItem('access_token') && window.localStorage.removeItem('access_token');
   };
 
   React.useEffect(() => {

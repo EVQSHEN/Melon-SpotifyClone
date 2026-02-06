@@ -1,12 +1,12 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import RowCard from '@/components/RowCard/RowCard';
-import AlbumCard from '@/components/AlbumCard/AlbumCard';
 import adaptiveCardRow from '@/utils/adaptiveCardRow';
-import PlaylistCard from '@/components/PlaylistCard/PlaylistCard';
+import AlbumCard from '@/components/AlbumCard/AlbumCard';
 import SkeletonCard from '@/components/Skeleton/SkeletonCard';
-import { getUserPlaylists, getNewReleases, getMe, getMyRecentlyPlayedTracks } from '@/api/spotify';
+import PlaylistCard from '@/components/PlaylistCard/PlaylistCard';
 import SkeletomRowCard from '@/components/Skeleton/SkeletomRowCard';
+import { getUserPlaylists, getNewReleases, getMe, getMyRecentlyPlayedTracks } from '@/api/spotify';
 
 const Home = () => {
   const navigate = useNavigate();
@@ -52,8 +52,8 @@ const Home = () => {
                   key={item.track?.uri + indx}
                   name={item.track.name}
                   picture={item.track.album.images[0].url}
-                  id={item.context?.uri.split(':')[2]}
-                  type={item?.context?.type}
+                  id={item.context ? item.context?.uri.split(':')[2] : item.track.id}
+                  type={item.context ? item.context.type : 'track'}
                 />
               ))
             : [...new Array(6)].map((_, indx) => <SkeletomRowCard key={indx} />)}

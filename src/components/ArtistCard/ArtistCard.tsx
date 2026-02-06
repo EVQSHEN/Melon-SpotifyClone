@@ -23,7 +23,6 @@ const ArtistCard: React.FC<SpotifyApi.ArtistObjectFull> = ({ name, images, follo
           <IconSVG name="playPulse" height="50" width="50" className="animate-pulse fill-sky-400" />
         </div>
       </div>
-
       <h2 className="mb-1 w-full truncate text-ellipsis">{name}</h2>
       <p className="mb-3 text-xs text-neutral-400 truncate text-ellipsis">
         {followers ? `Followers: ${followers.total}` : ''}

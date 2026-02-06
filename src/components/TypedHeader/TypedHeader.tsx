@@ -4,6 +4,7 @@ import { TypedHeaderType } from '@/types/interface';
 import SkeletonHeaderTitle from '@/components/Skeleton/SkeletonHeaderTitle';
 import SkeletonHeaderPicture from '@/components/Skeleton/SkeletonHeaderPicture';
 import liked_songs_image from '../../../public/liked.png';
+
 const TypedHeader: React.FC<TypedHeaderType> = ({
   color,
   picture,

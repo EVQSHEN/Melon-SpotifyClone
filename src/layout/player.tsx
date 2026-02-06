@@ -39,7 +39,7 @@ const Player = () => {
     script.async = true;
     document.body.appendChild(script);
     window.onSpotifyWebPlaybackSDKReady = () => {
-      const token = window.localStorage.getItem('token');
+      const token = window.localStorage.getItem('access_token');
       if (!token) {
         return false;
       }
@@ -50,11 +50,9 @@ const Player = () => {
         },
         volume: 0.5,
       });
-
       player.addListener('ready', ({ device_id }) => {
         changeDevice(device_id, setDevice, setActiveDevice);
       });
-
       player.addListener('player_state_changed', (state) => {
         if (state) {
           const currentPosition: number = state.position;
@@ -62,9 +60,7 @@ const Player = () => {
           setPlayer(state);
         }
       });
-
       player.connect();
-
       return () => {
         player.removeListener('player_state_changed');
         player.disconnect();
